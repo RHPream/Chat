@@ -40,13 +40,21 @@ const app = new Vue({
                 });
         }
     },
+    // created: function() {
+    //     axios.get('/Chat/public/messages')
+    //         .then(function (response) {
+    //             this.messages = response.data;
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // },
     created: function() {
         axios.get('/Chat/public/messages')
-            .then(function (response) {
-                this.messages = response.data;
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            .then(response => {
+            this.messages = response.data;
+    }).catch(function (error) {
+            console.log(error);
+        });
     }
 });

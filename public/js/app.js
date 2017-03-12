@@ -11567,9 +11567,20 @@ var app = new Vue({
             });
         }
     },
+    // created: function() {
+    //     axios.get('/Chat/public/messages')
+    //         .then(function (response) {
+    //             this.messages = response.data;
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // },
     created: function created() {
+        var _this = this;
+
         axios.get('/Chat/public/messages').then(function (response) {
-            this.messages = response.data;
+            _this.messages = response.data;
         }).catch(function (error) {
             console.log(error);
         });
@@ -12467,17 +12478,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
-  props: ['messages'],
-  methods: {
-    showOnConsole: function showOnConsole() {
-      console.log(messages);
-    }
-  }
-
+  props: ['messages']
 };
 
 /***/ }),
@@ -14981,7 +14984,7 @@ exports.push([module.i, "\n.chat-composer\n{\n    display: -webkit-box;\n    dis
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 42 */
@@ -32230,7 +32233,7 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "chat-message"
-  }, [_c('p', [_vm._v(_vm._s(_vm.message.message))]), _vm._v(" "), _c('small', [_vm._v(_vm._s(_vm.message.user))])])
+  }, [_c('p', [_vm._v(_vm._s(_vm.message.message))]), _vm._v(" "), _c('small', [_vm._v(_vm._s(_vm.message.user.name))])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -32322,11 +32325,13 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "chat-log"
-  }, [_c('button', {
-    on: {
-      "click": _vm.showOnConsole
-    }
-  }, [_vm._v("Show on console")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.messages))])])
+  }, _vm._l((_vm.messages), function(message) {
+    return _c('chat-message', {
+      attrs: {
+        "message": message
+      }
+    })
+  }))
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
